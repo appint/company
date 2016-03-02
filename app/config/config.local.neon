@@ -4,6 +4,6 @@ parameters:
 database:
 	dsn: 'mysql:host=localhost;dbname=company'
 	user: root
-	password: *ComforT71600*
+	password: ***
 	options:
 		lazy: yes
