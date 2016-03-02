@@ -1,0 +1,10 @@
+{
+        "require": {
+		"nette/nette": "~2.3.0",
+		"phpoffice/phpexcel": "~1.8.0",
+		"tecnickcom/TCPDF": "~6.2.0"
+	},
+	"require-dev": {
+		"dompdf/dompdf": "v0.7.0-beta3"
+	}
+}

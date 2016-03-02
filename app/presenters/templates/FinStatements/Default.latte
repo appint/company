@@ -1,0 +1,95 @@
+     
+{block content}
+    <div class="row">
+        {include '../../../forms/Form.latte'}
+    </div>
+    
+    <div class="row" n:if="$finStat"> 
+        
+        <p>
+            <small>
+                Vygenerované : {$finStat->getTimeStamp()|date:'d.m.Y, H:i'}
+            </small>
+        </p>
+    
+    <div class="row"> 
+        <table class="table table-bordered">
+            <th>Meno</th>
+            <th>Podiel</th>
+            <th>Suma</th>
+            {if $finStat->getFinance() > 0}
+                {foreach $banknotes as $banknote}
+                    <th>{$banknote->tag}</th>
+                {/foreach}
+            {/if}
+            {foreach $finStat->getPartners() as $id => $partner}
+                <tr>
+                    <td>{$partner->name}</td>
+                    <td>{$partner->count}/{$partner->part}</td>
+                    <td>{$partner->sum} €</td> 
+                    {if $finStat->getFinance() > 0}
+                        {var $usesBanknotes = $partner['banknotes']}
+                        {foreach $usesBanknotes as $useBanknote}
+                            <td>{$useBanknote[$iterator->getCounter()]}</td>
+                        {/foreach}
+                    {/if}
+                </tr>
+            {/foreach}
+        </table>    
+    </div>
+        
+        
+    <div class="row" n:if="$finStat->getFinance() > 0"> 
+        {var $checkSum = $finStat->getChecksum()}
+        <table class="table table-bordered">
+            <th>Bankovky</th>
+            {foreach $checkSum['banknote'] as $id => $value}
+                <th>{$banknotes[$id]->tag}</th>
+            {/foreach}
+            <tr>
+                <td>Počet (ks)</td>
+                {foreach $checkSum['banknote'] as $value}
+                    <td>{$value['count']}</td>
+                {/foreach}
+            </tr>
+            <tr>
+                <td>Suma (€)</td>
+                {foreach $checkSum['banknote'] as $value}
+                    <td>{$value['value']}</td>
+                {/foreach}
+            </tr>
+        </table>
+            
+        <table class="table table-bordered">
+            <th>Mince</th>
+            {foreach $checkSum['coin'] as $id => $value}
+                <th>{$banknotes[$id]->tag}</th>
+            {/foreach}
+            <tr>
+                <td>Počet (ks)</td>
+                {foreach $checkSum['coin'] as $value}
+                    <td>{$value['count']}</td>
+                {/foreach}
+            </tr>
+            <tr>
+                <td>Suma (€)</td>
+                {foreach $checkSum['coin'] as $value}
+                    <td>{$value['value']}</td>
+                {/foreach}
+            </tr>
+        </table> 
+            
+        <p class="text-info">
+            Hodnota vyplatených bankoviek a mincí : <strong>{$checkSum['sum']}</strong> €
+        </p> 
+            
+    </div>
+            
+        <p>
+            <a n:href="Export!, 'excel'" class="btn btn-default">Excel</a>
+            <a n:href="Export!, 'pdf'" class="btn btn-default disabled">PDF</a>
+        </p>
+        
+    </div>
+    
+{/block}

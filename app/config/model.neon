@@ -1,0 +1,12 @@
+services:
+	- Model\FinancialStatements\FormObserver
+	- Model\FinancialStatements\GeneratorId
+	- Model\FinancialStatements\FinStat
+	- Model\FinancialStatements\TimeStampCommand
+	- Model\FinancialStatements\CheckPartsCommand
+	- Model\FinancialStatements\CalcPartsCommand
+	- Model\FinancialStatements\CalcBanknotesCommand
+	- Model\FinancialStatements\CheckSumCommand
+	- Model\FinancialStatements\Accountant
+	- Model\FinancialStatements\IStorage
+	- Model\FinancialStatements\Export

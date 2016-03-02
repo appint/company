@@ -1,0 +1,10 @@
+span{text-align: center;}
+.form-group{margin-top: 2em;}
+.partner{margin-bottom: 0.2em;}
+.error{margin-top: 2em;}
+.error li{list-style-type: none;color: red;background-color: pink;padding: 0.2em;text-align: center;}
+/* Small devices (telephone, 768px and down) */
+@media(max-width: 768px) {
+    .btn{margin: 0.2em;}
+    .partner{border-bottom: 1px solid whitesmoke;padding: 0.3em}
+}

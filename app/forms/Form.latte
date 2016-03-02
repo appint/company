@@ -1,0 +1,53 @@
+{form form}
+        <div class="col-xs-12 col-md-12">
+            {control form errors}
+        </div>
+        <div class="form-group col-xs-12 col-md-12">
+            <label for="form-finance" class="required col-xs-12 col-md-4">
+                Finančné zhodnotenie :
+            </label>
+            <div class="col-xs-10 col-md-6">
+                {input finance, class => "form-control"}
+            </div> 
+            <div class="required col-xs-1 col-md-1"><span>€</span></div>
+        </div>
+            
+    <fieldset>
+        <legend>Partneri</legend>
+            
+        <div class="row">
+            <span class="col-xs-6 col-md-6">Meno</span> 
+            <span class="col-xs-6 col-md-6">Podiel</span> 
+        </div>
+        
+        {foreach $form['partners']->components as $key => $partner}
+            <div class="container-fluid partner">
+                <div class="col-xs-5 col-sm-6 col-md-6">
+                    {input $partner['name'], class => "form-control"}
+                </div>
+                <div class="col-xs-7 col-sm-5 col-md-5">
+                    <div class="col-xs-5 col-md-5">
+                        {input $partner['count'], class => "form-control"}
+                    </div>
+                    <span class="col-xs-2 col-md-2">/</span>
+                    <div class="col-xs-5 col-md-5">
+                        {input $partner['part'], class => "form-control"}
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-1 col-md-1">
+                    <a n:href="deletePartner!, $key" class="btn btn-danger" data-delete-confirm>-</a> 
+                </div>
+            </div>
+        {/foreach}
+        
+        <div class = "row">
+            <a n:href="addPartner!" class="btn btn-success">Pridať partnera</a>
+        </div>
+            
+    </fieldset>
+        
+        <div class = "form-group col-xs-12 col-md-12" n:if="\count($form['partners']->components) > 0">
+            {input save, class => "col-xs-4 col-md-4 btn btn-default"}
+            {input calc, class => "col-xs-4 col-md-4 btn btn-default"}
+        </div>
+{/form}
