@@ -1,9 +1,0 @@
-parameters:
-
-
-database:
-	dsn: 'mysql:host=localhost;dbname=company'
-	user: root
-	password: *ComforT71600*
-	options:
-		lazy: yes
